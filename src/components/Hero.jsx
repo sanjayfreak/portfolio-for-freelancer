@@ -22,24 +22,25 @@ const Hero = () => {
         paddingTop: 72,
       }}
     >
-      {/* ── FULL BACKGROUND VIDEO ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: 0,
-        }}
-      >
-        <source src="/src/assets/edit.mp4" type="video/mp4" />
-      </video>
-
+{/* ── FULL BACKGROUND VIDEO ── */}
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  style={{
+    position: "absolute",
+    inset: 0,
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    zIndex: 0,
+  }}
+>
+  <source src="/edit.mp4" type="video/mp4" />
+ 
+</video>
       {/* ── DARK OVERLAY so text is readable ── */}
       <div
         style={{
