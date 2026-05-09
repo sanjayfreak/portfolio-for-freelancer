@@ -15,18 +15,33 @@ import Pricing from "./components/Pricing";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 // ...component code...
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Navbar />
       <Hero />
       <Marquee />
       <Services />
       <Portfolio />
-      <Stat/>
+      <Stat />
       <Process />
       <Testimonials />
       <Pricing />
