@@ -14,22 +14,43 @@ const About = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={ref} style={{ padding: "110px 7%", background: "#07070e" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+    <section id="about" ref={ref} style={{ padding: "80px 7%", background: "#07070e" }}>
+      <style>{`
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: center;
+        }
+        @media (max-width: 767px) {
+          .about-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .about-image-box {
+            height: 260px !important;
+          }
+        }
+      `}</style>
+
+      <div className="about-grid">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
           style={{ position: "relative" }}
         >
-          <div style={{
-            borderRadius: 16, overflow: "hidden", height: 480,
-            background: "linear-gradient(145deg, #0d0020, #1a0040, #0d0030)",
-            border: "1px solid rgba(168,85,247,0.3)",
-            boxShadow: "0 0 60px rgba(168,85,247,0.2), -4px -4px 0 #a855f7, 4px 4px 0 #ec4899",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            position: "relative",
-          }}>
+          <div
+            className="about-image-box"
+            style={{
+              borderRadius: 16, overflow: "hidden", height: 480,
+              background: "linear-gradient(145deg, #0d0020, #1a0040, #0d0030)",
+              border: "1px solid rgba(168,85,247,0.3)",
+              boxShadow: "0 0 60px rgba(168,85,247,0.2), -4px -4px 0 #a855f7, 4px 4px 0 #ec4899",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              position: "relative",
+            }}
+          >
             <div style={{ textAlign: "center" }}>
               <div className="bebas" style={{ fontSize: 60, color: "rgba(168,85,247,0.3)", letterSpacing: 4 }}>REEL</div>
               <div className="bebas" style={{ fontSize: 60, color: "rgba(236,72,153,0.3)", letterSpacing: 4 }}>STUDIO</div>
@@ -45,8 +66,11 @@ const About = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div style={{ color: "#a855f7", fontSize: 13, fontWeight: 600, letterSpacing: 4, marginBottom: 14 }}>ABOUT ME</div>
-          <h2 className="bebas" style={{ fontSize: "clamp(40px, 4vw, 64px)", lineHeight: 1.05, marginBottom: 24 }}>
-            5 YEARS OF CINEMATIC <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>EXCELLENCE</span>
+          <h2 className="bebas" style={{ fontSize: "clamp(36px, 6vw, 64px)", lineHeight: 1.05, marginBottom: 24 }}>
+            5 YEARS OF CINEMATIC{" "}
+            <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              EXCELLENCE
+            </span>
           </h2>
           <p style={{ color: "#94a3b8", fontSize: 15, lineHeight: 1.8, marginBottom: 16 }}>
             I'm a freelance video editor with a deep passion for visual storytelling. From YouTube vlogs to commercial brand films, I've spent five years perfecting the craft of turning raw footage into unforgettable narratives.
@@ -56,7 +80,13 @@ const About = () => {
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 36 }}>
             {["Premiere Pro", "After Effects", "DaVinci", "Final Cut"].map((s) => (
-              <span key={s} style={{ padding: "6px 16px", borderRadius: 6, fontSize: 13, fontWeight: 600, background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#c084fc" }}>{s}</span>
+              <span key={s} style={{
+                padding: "6px 16px", borderRadius: 6, fontSize: 13, fontWeight: 600,
+                background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)",
+                color: "#c084fc",
+              }}>
+                {s}
+              </span>
             ))}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

@@ -13,21 +13,13 @@ const portfolioItems = [
     color: ["#0d0030", "#1a0050"],
     accent: "#ec4899",
   },
-  {
-    label: "Music Video",
-    color: ["#200020", "#3d0040"],
-    accent: "#f472b6",
-  },
+  
   {
     label: "Wedding Film",
     color: ["#0a001a", "#1a0035"],
     accent: "#c084fc",
   },
-  {
-    label: "Corporate Ad",
-    color: ["#150020", "#280040"],
-    accent: "#a855f7",
-  },
+ 
   {
     label: "Travel Doc",
     color: ["#0d0028", "#1f0048"],

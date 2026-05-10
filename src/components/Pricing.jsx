@@ -22,19 +22,47 @@ const Pricing = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="pricing" ref={ref} style={{ padding: "110px 7%", background: "#050508" }}>
+    <section id="pricing" ref={ref} style={{ padding: "80px 7%", background: "#050508" }}>
+      <style>{`
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+        @media (max-width: 900px) {
+          .pricing-grid {
+            grid-template-columns: 1fr;
+            max-width: 440px;
+          }
+          .pricing-card-popular {
+            transform: scale(1) !important;
+          }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+          .pricing-grid {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 700px;
+          }
+        }
+      `}</style>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         style={{ textAlign: "center", marginBottom: 70 }}
       >
         <div style={{ color: "#a855f7", fontSize: 13, fontWeight: 600, letterSpacing: 4, marginBottom: 14 }}>INVESTMENT</div>
-        <h2 className="bebas" style={{ fontSize: "clamp(44px, 5vw, 72px)", lineHeight: 1 }}>
-          TRANSPARENT <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>PRICING</span>
+        <h2 className="bebas" style={{ fontSize: "clamp(36px, 7vw, 72px)", lineHeight: 1 }}>
+          TRANSPARENT{" "}
+          <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            PRICING
+          </span>
         </h2>
       </motion.div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, maxWidth: 1000, margin: "0 auto" }}>
+      <div className="pricing-grid">
         {plans.map((plan, i) => (
           <motion.div
             key={plan.name}
@@ -42,7 +70,7 @@ const Pricing = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: i * 0.15, duration: 0.6 }}
             whileHover={{ y: -6 }}
-            className="glass"
+            className={`glass ${plan.popular ? "pricing-card-popular" : ""}`}
             style={{
               padding: 36, borderRadius: 18, position: "relative",
               border: plan.popular ? `1px solid ${plan.color}` : "1px solid rgba(168,85,247,0.15)",
@@ -55,6 +83,7 @@ const Pricing = () => {
                 position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)",
                 background: "linear-gradient(135deg, #7c3aed, #ec4899)",
                 padding: "5px 20px", borderRadius: 20, fontSize: 11, fontWeight: 700, letterSpacing: 2,
+                whiteSpace: "nowrap",
               }}>
                 MOST POPULAR
               </div>
